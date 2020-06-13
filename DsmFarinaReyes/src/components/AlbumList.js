@@ -3,15 +3,16 @@ import { Text, View, FlatList } from 'react-native';
 import axios from 'axios';
 import AlbumDetail from './AlbumDetail';
 
+const api_key = "e34701e412632cb9cc7263b310f6f5ae";
+const id_user= "188867561%40N04";
 const AlbumList = ()=>{
   const [photoset, setPhotoset] = useState(null)
   useEffect(() => {
     const buscarPhotosets = async () => {
 			try{				
 				const {data} = await
-				axios.get('https://api.flickr.com/services/rest/?method=flickr.photosets.getList&api_key=e34701e412632cb9cc7263b310f6f5ae&user_id=188867561%40N04&format=json&nojsoncallback=1');
-				console.log(data)
-				setPhotoset(data.photosets.photoset)
+				axios.get(`https://api.flickr.com/services/rest/?method=flickr.photosets.getList&api_key=${api_key}&user_id=${id_user}&format=json&nojsoncallback=1`);
+        setPhotoset(data.photosets.photoset);
 			}catch(err){
 				console.log(err)
 			}
@@ -33,8 +34,8 @@ const AlbumList = ()=>{
         data={photoset}
         renderItem={
           ({item}) =>
-          <AlbumDetail title={item.title._content} photos={item.photos}
-          description={item.description._content}  albumId={item.id}  />
+          <AlbumDetail title={item.title._content} photos={item.photos} apiKey={api_key} idUser={id_user}
+          description={item.description._content} view={item.count_views} albumId={item.id}  />
         }
       />
     </View>
