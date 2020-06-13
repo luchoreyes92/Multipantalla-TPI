@@ -5,10 +5,11 @@ import CardSection from './CardSection';
 import Button from './Button';
 import { Actions } from 'react-native-router-flux';
 
-const AlbumDetail = ({ title,description,photos, albumId }) => {
+const AlbumDetail = ({ title,description,photos,view, albumId,idUser,apiKey }) => {
   const {
     headerContentStyle,
     secondText,
+    AlternativeText,
     headerTextStyle,
     imageStyle
   } = styles;
@@ -18,6 +19,7 @@ const AlbumDetail = ({ title,description,photos, albumId }) => {
       <CardSection>
         <View style={headerContentStyle}>
           <Text style={headerTextStyle}>{title}</Text>
+          <Text style={AlternativeText}>{view == 1 ? "Visto por "+ view + " persona." :"Visto por "+ view + " personas."}</Text>
         </View>
       </CardSection>
       <CardSection>
@@ -27,8 +29,8 @@ const AlbumDetail = ({ title,description,photos, albumId }) => {
       </CardSection>
 
       <CardSection>
-        <Button onPress={() => Actions.photoList({albumId:albumId})}>
-          {photos === 1?"Conoce su mejor estadio":"Conoce sus" + photos +" mejores estadios"}
+        <Button onPress={() => Actions.photoList({albumId:albumId,idUser:idUser,apiKey:apiKey})}>
+          {photos === 1?"Conoce su mejor estadio":"Conoce sus " + photos +" mejores estadios"}
         </Button>
       </CardSection>
     </Card>
@@ -40,13 +42,13 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'space-around'
   },
-  headerTextStyle: {
-    fontSize: 18,
+  AlternativeText: {
+    fontSize: 10,
     justifyContent:"center",
     alignItems:"center"
   },
   secondText:{
-    fontSize: 10,
+    fontSize: 12,
     justifyContent:"center",
     alignItems:"center"
   },

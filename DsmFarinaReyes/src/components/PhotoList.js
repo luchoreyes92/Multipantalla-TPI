@@ -35,7 +35,7 @@ const PhotoList = ({albumId})=>{
           data={photos}
           renderItem={
             ({item}) =>
-            <PhotoDetail key={item.title} title={item.title} imageUrl={`https://farm${item.farm}.staticflickr.com/${item.server}/${item.id}_${item.secret}.jpg`} />
+            <PhotoDetail idPhoto={item.id} title={item.title} imageUrl={`https://farm${item.farm}.staticflickr.com/${item.server}/${item.id}_${item.secret}.jpg`} />
           }
         />
     </View>
