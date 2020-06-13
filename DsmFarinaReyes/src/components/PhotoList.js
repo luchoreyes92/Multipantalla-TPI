@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, FlatList } from 'react-native';
 import axios from 'axios';
 import PhotoDetail from './PhotoDetail';
+import CommentsList from './CommentList';
 
 const PhotoList = ({albumId})=>{
   const [photos, setPhotos] = useState(null)
@@ -35,8 +36,10 @@ const PhotoList = ({albumId})=>{
           data={photos}
           renderItem={
             ({item}) =>
-            <PhotoDetail key={item.title} title={item.title} imageUrl={`https://farm${item.farm}.staticflickr.com/${item.server}/${item.id}_${item.secret}.jpg`} />
+            <PhotoDetail idPhoto={item.id} title={item.title} imageUrl={`https://farm${item.farm}.staticflickr.com/${item.server}/${item.id}_${item.secret}.jpg`} />
+            
           }
+
         />
     </View>
   )  

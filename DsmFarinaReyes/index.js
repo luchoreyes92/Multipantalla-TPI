@@ -16,7 +16,7 @@ const App = () => (
         title="Estadios del Mundo"
         initial={true}
       />
-      <Scene key="photoList" component={PhotoList} title="Photos" />
+      <Scene key="photoList" component={PhotoList} title="Estadios" />
     </Stack>
   </Router>
 );
